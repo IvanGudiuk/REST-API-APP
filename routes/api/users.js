@@ -14,7 +14,7 @@ router.post(
 
 router.post("/login", validateBody(registerSchema), ctrlWrapper(ctrl.login));
 
-router.get("/logout", authenticate, ctrlWrapper(ctrl.logout));
+router.post("/logout", authenticate, ctrlWrapper(ctrl.logout));
 
 router.get("/current", authenticate, ctrlWrapper(ctrl.current));
 

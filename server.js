@@ -3,10 +3,6 @@ const mongoose = require("mongoose");
 
 const { DB_HOST, PORT = 3000 } = process.env;
 
-// app.listen(port, () => {
-//   console.log("Server running. Use our API on port: 3000");
-// });
-
 mongoose
   .connect(DB_HOST)
   .then(
