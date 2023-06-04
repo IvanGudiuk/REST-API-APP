@@ -2,7 +2,11 @@ const express = require("express");
 const ctrl = require("../../controllers/users");
 const { ctrlWrapper } = require("../../helpers");
 const { validateBody, authenticate, upload } = require("../../middlewares");
-const { registerSchema, subscriptionSchema } = require("../../schemas/user");
+const {
+  registerSchema,
+  subscriptionSchema,
+  emailSchema,
+} = require("../../schemas/user");
 
 const router = express.Router();
 
@@ -16,7 +20,15 @@ router.post("/login", validateBody(registerSchema), ctrlWrapper(ctrl.login));
 
 router.post("/logout", authenticate, ctrlWrapper(ctrl.logout));
 
+router.post(
+  "/verify",
+  validateBody(emailSchema),
+  ctrlWrapper(ctrl.resendVerify)
+);
+
 router.get("/current", authenticate, ctrlWrapper(ctrl.current));
+
+router.get("/auth/verify/:verificationToken", ctrlWrapper(ctrl.verification));
 
 router.patch(
   "/",
