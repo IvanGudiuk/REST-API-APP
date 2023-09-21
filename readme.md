@@ -1,5 +1,30 @@
 ## GoIT Node.js Course Template Homework
 
+const app = require("./app");
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+const { DB_HOST, PORT = 3000 } = process.env;
+
+mongoose.set("strictQuery", true);
+
+mongoose
+  .connect(DB_HOST)
+  .then(
+    app.listen(PORT, () => {
+      console.log("Server running. Use our API on port: 3000");
+    })
+  )
+  .catch((error) => {
+    console.log(error.message);
+    process.exit(1);
+  });
+  
+  JkVCqFTB4rtRAW4n
+
+DB_HOST = "mongodb+srv://Ivan:JkVCqFTB4rtRAW4n@cluster0.yx8y1f0.mongodb.net/BoardAnnouncements?retryWrites=true&w=majority"
+PORT = 3000
+
 Виконайте форк цього репозиторію для виконання домашніх завдань (2-6)
 Форк створить репозиторій на вашому http://github.com
 
